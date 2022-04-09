@@ -2,7 +2,6 @@
 
 ### Supported Linux distros
 
-
 - Arch-based
 - Fedora
 - Debian-based
