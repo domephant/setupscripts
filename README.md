@@ -15,4 +15,7 @@
 Run this script after installing your Linux distribution.
 The script needs sudo privileges to work properly.  
 
-Note: The script will automatically upgrade all the packages on your system.
+### Setup
+
+- Make the desired script executable.
+- Run the script as sudo.
