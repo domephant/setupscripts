@@ -5,7 +5,7 @@
 # User inputs
 
 # Installation
-cd /home/$USER/Downloads/
+sudo dnf update --refresh -y
 echo "Installing Flatpak and Flathub..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 echo "Installing Flatpaks..."
