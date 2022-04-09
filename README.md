@@ -12,4 +12,5 @@
 
 ### Usage
 
-Run this script after installing your Linux distribution. 
+Run this script after installing your Linux distribution.
+The script needs sudo privileges to work properly.  
