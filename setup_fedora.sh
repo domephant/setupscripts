@@ -44,7 +44,10 @@ wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/downl
 
 # Installation
 
-sudo dnf install dotnet-sdk-6.0 keepassxc gh steam code appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm heroic-3.2.6.x86_64.rpm -y
+sudo dnf install dotnet-sdk-6.0 keepassxc gh steam code -y
+sudo dnf localinstall -y appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm 
+sudo dnf localinstall -y heroic-2.2.6.x86_64.rpm
+
 
 # Optional
 
