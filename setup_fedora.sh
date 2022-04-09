@@ -5,7 +5,8 @@
 # User inputs
 
 # Installation
-sudo dnf update --refresh -y
+sudo dnf update --refresh --assumeno
+sudo dnf upgrade --refresh -y
 echo "Installing Flatpak and Flathub..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 echo "Installing Flatpaks..."
@@ -57,7 +58,7 @@ sudo dnf install google-chrome-stable -y
 sudo dnf install dnf-plugins-core -y
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-sudo dnf update --refresh --assumeno
+sudo dnf update --refresh -y
 sudo dnf install microsoft-edge-stable -y
 
 echo "Installing AppImages..."
