@@ -28,47 +28,47 @@ echo "Installing rpm packages..."
 # VS Code
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-dnf check-update
-dnf install code -y
+sudo dnf check-update
+sudo dnf install code -y
 
 # Steam
-dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
-dnf install steam -y
+sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+sudo dnf install steam -y
 
 # AppImageLauncher
 wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
-dnf install appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm -y
+sudo dnf install appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm -y
 
 # GitHub CLI
-dnf install 'dnf-command(config-manager)'
-dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-dnf install gh -y
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh -y
 
 # KeePassXC
-dnf install keepassxc -y
+sudo dnf install keepassxc -y
 
 # .NET Framework
-dnf install dotnet-sdk-6.0 -y
+sudo dnf install dotnet-sdk-6.0 -y
 
 # Heroic Games Launcher 
 wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.2.6/heroic-2.2.6.x86_64.rpm
-dnf install heroic-2.2.6.x86_64.rpm -y
+sudo dnf install heroic-2.2.6.x86_64.rpm -y
 
 
 #Optional
 
 # Browser
 # Chrome
-dnf install fedora-workstation-repositories
-dnf config-manager --set-enabled google-chrome
-dnf install google-chrome-stable -y
+sudo dnf install fedora-workstation-repositories
+sudo dnf config-manager --set-enabled google-chrome
+sudo dnf install google-chrome-stable -y
 
 # Microsoft Edge
-dnf install dnf-plugins-core -y
+sudo dnf install dnf-plugins-core -y
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
-dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-dnf update --refresh ----assumeno
-dnf install microsoft-edge-stable -y
+sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+sudo dnf update --refresh ----assumeno
+sudo dnf install microsoft-edge-stable -y
 
 echo "Installing AppImages..."
 wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.23.11731.tar.gz
