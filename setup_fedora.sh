@@ -32,7 +32,7 @@ dnf check-update
 dnf install code -y
 
 # Steam
-dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 dnf install steam -y
 
 # AppImageLauncher
@@ -67,13 +67,14 @@ dnf install google-chrome-stable -y
 dnf install dnf-plugins-core -y
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-dnf update --refresh
+dnf update --refresh ----assumeno
 dnf install microsoft-edge-stable -y
 
 echo "Installing AppImages..."
 wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.23.11731.tar.gz
 tar -xvf jetbrains-toolbox-1.23.11731.tar.gz
 cd jetbrains-toolbox-1.23.11731.tar.gz
+chmod +x jetbrains-toolbox
 ./jetbrains-toolbox &
 
 
