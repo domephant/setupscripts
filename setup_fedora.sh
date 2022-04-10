@@ -11,7 +11,19 @@ EDGE = false
 VIM_NANO = false
 POP = false
 
-# User inputs
+# Command line arguments processing
+
+for var in "$@"; do
+    case "$var" in 
+        --spotify) echo "spotify";;
+        --postman) echo "postman";;
+        --thunderbird) echo "thunderbird";;
+        --chrome) echo "chrome";;
+        --edge) echo "edge";;
+        --vimnano) echo "vim + nano";;
+        --pop) echo "pop shell";;
+    esac
+done
 
 # Installation
 sudo dnf update --refresh --assumeno
