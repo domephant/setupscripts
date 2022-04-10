@@ -16,6 +16,8 @@ flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub 
 
 #Optional
 flatpak install flathub com.spotify.Client -y
+flatpak install flathub com.getpostman.Postman -y 
+flatpak install flathub org.mozilla.Thunderbird -y
 
 echo "Installing Snaps..."
 echo "Installing rpm packages..."
@@ -63,6 +65,15 @@ rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
 sudo dnf update --refresh -y
 sudo dnf install microsoft-edge-stable -y
+
+sudo dnf install vim vim-x11 nano -y 
+
+sudo dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
+git clone https://github.com/pop-os/shell-shortcuts
+cd shell-shortcuts
+make
+sudo make install
+cd..
 
 echo "Installing AppImages..."
 wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.23.11731.tar.gz
