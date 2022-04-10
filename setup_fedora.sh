@@ -2,6 +2,15 @@
 
 # Variables
 
+SPOTIFY = false;
+POSTMAN = false;
+THUNDERBIRD = false;
+
+CHROME = false
+EDGE = false
+VIM_NANO = false
+POP = false
+
 # User inputs
 
 # Installation
@@ -66,8 +75,10 @@ sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
 sudo dnf update --refresh -y
 sudo dnf install microsoft-edge-stable -y
 
-sudo dnf install vim vim-x11 nano -y 
+# Vim & Nano
+sudo dnf install gvim nano -y 
 
+# Pop Shell
 sudo dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
 git clone https://github.com/pop-os/shell-shortcuts
 cd shell-shortcuts
