@@ -15,9 +15,15 @@ install_apps() {
     flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
 
     #Optional
-    flatpak install flathub com.spotify.Client -y
-    flatpak install flathub com.getpostman.Postman -y 
-    flatpak install flathub org.mozilla.Thunderbird -y
+    if [[$SPOTIFY == "true"]];then
+        flatpak install flathub com.spotify.Client -y
+    fi
+    if [[$POSTMAN == "true"]];then
+        flatpak install flathub com.getpostman.Postman -y 
+    fi
+    if [[$THUNDERBIRD == "true"]];then
+        flatpak install flathub org.mozilla.Thunderbird -y
+    fi
 
     echo "Installing Snaps..."
     echo "Installing rpm packages..."
@@ -54,27 +60,35 @@ install_apps() {
 
     # Browser
     # Chrome
-    sudo dnf install fedora-workstation-repositories
-    sudo dnf config-manager --set-enabled google-chrome
-    sudo dnf install google-chrome-stable -y
+    if [[$CHROME == "true"]]; then 
+        sudo dnf install fedora-workstation-repositories
+        sudo dnf config-manager --set-enabled google-chrome
+        sudo dnf install google-chrome-stable -y
+    fi
 
     # Microsoft Edge
-    sudo dnf install dnf-plugins-core -y
-    rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-    sudo dnf update --refresh -y
-    sudo dnf install microsoft-edge-stable -y
+    if [[$EDGE == "true"]]; then 
+        sudo dnf install dnf-plugins-core -y
+        rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+        sudo dnf update --refresh -y
+        sudo dnf install microsoft-edge-stable -y
+    fi
 
     # Vim & Nano
-    sudo dnf install gvim nano -y 
+    if [[$VIM_NANO == "true"]]; then 
+        sudo dnf install gvim nano -y
+    fi 
 
     # Pop Shell
-    sudo dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
-    git clone https://github.com/pop-os/shell-shortcuts
-    cd shell-shortcuts
-    make
-    sudo make install
-    cd..
+    if [[$POP == "true"]]; then 
+        sudo dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
+        git clone https://github.com/pop-os/shell-shortcuts
+        cd shell-shortcuts
+        make
+        sudo make install
+        cd..
+    fi
 
     echo "Installing AppImages..."
     wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.23.11731.tar.gz
