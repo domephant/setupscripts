@@ -2,39 +2,39 @@
 
 # Variables
 
-SPOTIFY = false;
-POSTMAN = false;
-THUNDERBIRD = false;
+SPOTIFY = "false"
+POSTMAN = "false"
+THUNDERBIRD = "false"
 
-CHROME = false
-EDGE = false
-VIM_NANO = false
-POP = false
+CHROME = "false"
+EDGE = "false"
+VIM_NANO = "false"
+POP = "false"
 
 # Command line arguments processing
 
 for var in "$@"; do
     case "$var" in 
         --spotify) 
-            $SPOTIFY = true;
+            SPOTIFY = "true"
         ;;
         --postman) 
-            $POSTMAN = true;
+            POSTMAN = "true"
         ;;
         --thunderbird) 
-            $THUNDERBIRD = true;
+            THUNDERBIRD = "true"
         ;;
         --chrome)
-            $CHROME = true;
+            CHROME = "true"
         ;;
         --edge)
-            $EDGE = true
+            EDGE = "true"
         ;;
         --vimnano) 
-            $VIM_NANO = true
+            VIM_NANO = "true"
         ;;
         --pop)
-            $POP = true
+            POP = "true"
         ;;
     esac
 done
@@ -52,31 +52,31 @@ echo "- GitHub CLI"
 echo "- OnlyOffice"
 echo "- Heroic Games Launcher"
 
-if [[ $SPOTIFY == true ]]; then
+if [[ $SPOTIFY == "true" ]]; then
     echo "- Spotify"
 fi
 
-if [[ $POSTMAN == true ]]; then
+if [[ $POSTMAN == "true" ]]; then
     echo "- Postman"
 fi
 
-if [[ $THUNDERBIRD == true ]]; then
+if [[ $THUNDERBIRD == "true" ]]; then
     echo "- Thunderbird"
 fi
 
-if [[ $CHROME == true ]]; then
+if [[ $CHROME == "true" ]]; then
     echo "- Google Chrome"
 fi
 
-if [[ $EDGE == true ]]; then
+if [[ $EDGE == "true" ]]; then
     echo "- Microsoft Edge"
 fi
 
-if [[ $VIM_NANO == true ]]; then
+if [[ $VIM_NANO == "true" ]]; then
     echo "- Vim & Nano"
 fi
 
-if [[ $POP == true ]]; then
+if [[ $POP == "true" ]]; then
     echo "- Pop! Shell"
 fi
 
