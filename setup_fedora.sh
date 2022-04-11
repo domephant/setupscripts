@@ -2,39 +2,39 @@
 
 # Variables
 
-SPOTIFY = "false"
-POSTMAN = "false"
-THUNDERBIRD = "false"
+SPOTIFY="false"
+POSTMAN="false"
+THUNDERBIRD="false"
 
-CHROME = "false"
-EDGE = "false"
-VIM_NANO = "false"
-POP = "false"
+CHROME="false"
+EDGE="false"
+VIM_NANO="false"
+POP="false"
 
 # Command line arguments processing
 
 for var in "$@"; do
     case "$var" in 
         --spotify) 
-            SPOTIFY = "true"
+            SPOTIFY="true"
         ;;
         --postman) 
-            POSTMAN = "true"
+            POSTMAN="true"
         ;;
         --thunderbird) 
-            THUNDERBIRD = "true"
+            THUNDERBIRD="true"
         ;;
         --chrome)
-            CHROME = "true"
+            CHROME="true"
         ;;
         --edge)
-            EDGE = "true"
+            EDGE="true"
         ;;
         --vimnano) 
-            VIM_NANO = "true"
+            VIM_NANO="true"
         ;;
         --pop)
-            POP = "true"
+            POP="true"
         ;;
     esac
 done
