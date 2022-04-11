@@ -16,25 +16,25 @@ POP = false
 for var in "$@"; do
     case "$var" in 
         --spotify) 
-            SPOTIFY = true;
+            $SPOTIFY = true;
         ;;
         --postman) 
-            POSTMAN = true;
+            $POSTMAN = true;
         ;;
         --thunderbird) 
-            THUNDERBIRD = true;
+            $THUNDERBIRD = true;
         ;;
         --chrome)
-            CHROME = true;
+            $CHROME = true;
         ;;
         --edge)
-            EDGE = true
+            $EDGE = true
         ;;
         --vimnano) 
-            VIM_NANO = true
+            $VIM_NANO = true
         ;;
         --pop)
-            POP = true
+            $POP = true
         ;;
     esac
 done
@@ -84,7 +84,7 @@ while true; do
     read -p "Proceed?" yn
     case $yn in
         [Yy]* ) 
-            install
+            install_apps
         ;;
         [Nn]* ) 
             echo "Cancelled."
@@ -94,7 +94,7 @@ while true; do
     esac
 done
 
-install() {
+install_apps() {
 
     # Installation
     # TODO: Timeshift, eventually LibreOffice 
