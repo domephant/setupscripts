@@ -12,7 +12,7 @@ VIM_NANO="false"
 POP="false"
 
 echo "Enter password: "
-readvar -s PASSWORD
+read -s PASSWORD
 
 # Method Declaration
 install_apps() {
