@@ -1,6 +1,7 @@
 #! /bin/bash
 
 # Variables
+PASSWORD=""
 
 SPOTIFY="false"
 POSTMAN="false"
@@ -11,16 +12,13 @@ EDGE="false"
 VIM_NANO="false"
 POP="false"
 
-echo "Enter password: "
-read -s PASSWORD
-
 # Method Declaration
 install_apps() {
 
     # Installation
     # TODO: Timeshift, eventually LibreOffice 
-    sudo -S <<< $PASSWORD dnf update --refresh --assumeno
-    sudo -S <<< $PASSWORD dnf upgrade --refresh -y
+    sudo dnf update --refresh --assumeno
+    sudo dnf upgrade --refresh -y
     echo "Installing Flatpak and Flathub..."
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo "Installing Flatpaks..."
@@ -29,13 +27,13 @@ install_apps() {
     flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
 
     #Optional
-    if [[$SPOTIFY == "true"]];then
+    if [[$SPOTIFY == "true"]]; then
         flatpak install flathub com.spotify.Client -y
     fi
-    if [[$POSTMAN == "true"]];then
+    if [[$POSTMAN == "true"]]; then
         flatpak install flathub com.getpostman.Postman -y 
     fi
-    if [[$THUNDERBIRD == "true"]];then
+    if [[$THUNDERBIRD == "true"]]; then
         flatpak install flathub org.mozilla.Thunderbird -y
     fi
 
@@ -48,26 +46,26 @@ install_apps() {
     # VS Code
     rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-    sudo -S <<< $PASSWORD dnf check-update
+    sudo dnf check-update
 
     # Steam
 
-    sudo -S <<< $PASSWORD dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+    sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
     # AppImageLauncher
     wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
     # GitHub CLI
-    sudo -S <<< $PASSWORD dnf install 'dnf-command(config-manager)'
-    sudo -S <<< $PASSWORD dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+    sudo dnf install 'dnf-command(config-manager)'
+    sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 
     # Heroic Games Launcher 
     wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.2.6/heroic-2.2.6.x86_64.rpm
 
     # Installation
 
-    sudo -S <<< $PASSWORD dnf install dotnet-sdk-6.0 keepassxc gh steam code -y
-    sudo -S <<< $PASSWORD dnf localinstall -y appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm 
-    sudo -S <<< $PASSWORD dnf localinstall -y heroic-2.2.6.x86_64.rpm
+    sudo dnf install dotnet-sdk-6.0 keepassxc gh steam code -y
+    sudo dnf localinstall -y appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm 
+    sudo dnf localinstall -y heroic-2.2.6.x86_64.rpm
 
 
     # Optional
@@ -75,32 +73,32 @@ install_apps() {
     # Browser
     # Chrome
     if [[$CHROME == "true"]]; then 
-        sudo -S <<< $PASSWORD dnf install fedora-workstation-repositories
-        sudo -S <<< $PASSWORD dnf config-manager --set-enabled google-chrome
-        sudo -S <<< $PASSWORD dnf install google-chrome-stable -y
+        sudo dnf install fedora-workstation-repositories
+        sudo dnf config-manager --set-enabled google-chrome
+        sudo dnf install google-chrome-stable -y
     fi
 
     # Microsoft Edge
     if [[$EDGE == "true"]]; then 
-        sudo -S <<< $PASSWORD dnf install dnf-plugins-core -y
+        sudo dnf install dnf-plugins-core -y
         rpm --import https://packages.microsoft.com/keys/microsoft.asc
-        sudo -S <<< $PASSWORD dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-        sudo -S <<< $PASSWORD dnf update --refresh -y
-        sudo -S <<< $PASSWORD dnf install microsoft-edge-stable -y
+        sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+        sudo dnf update --refresh -y
+        sudo dnf install microsoft-edge-stable -y
     fi
 
     # Vim & Nano
     if [[$VIM_NANO == "true"]]; then 
-        sudo -S <<< $PASSWORD dnf install gvim nano -y
+        sudo dnf install gvim nano -y
     fi 
 
     # Pop Shell
     if [[$POP == "true"]]; then 
-        sudo -S <<< $PASSWORD dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
+        sudo dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
         git clone https://github.com/pop-os/shell-shortcuts
         cd shell-shortcuts
         make
-        sudo -S <<< $PASSWORD make install
+        sudo make install
         cd..
     fi
 
@@ -115,6 +113,11 @@ install_apps() {
     echo "Installing GNOME extensions..."
     echo "Done!"
 }
+
+# Sudo password input
+
+echo "Enter sudo password:"
+read PASSWORD
 
 # Command line arguments processing
 
