@@ -20,21 +20,21 @@ install_apps() {
     echo $PASSWORD | sudo -S dnf update --refresh --assumeno
     echo $PASSWORD | sudo -S dnf upgrade --refresh -y
     echo "Installing Flatpak and Flathub..."
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    echo $PASSWORD | sudo -S flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo "Installing Flatpaks..."
 
     #Mandatory
-    flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
+    echo $PASSWORD | sudo -S flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
 
     #Optional
     if [[$SPOTIFY == "true"]]; then
-        flatpak install flathub com.spotify.Client -y
+        echo $PASSWORD | sudo -S flatpak install flathub com.spotify.Client -y
     fi
     if [[$POSTMAN == "true"]]; then
-        flatpak install flathub com.getpostman.Postman -y 
+        echo $PASSWORD | sudo -S flatpak install flathub com.getpostman.Postman -y 
     fi
     if [[$THUNDERBIRD == "true"]]; then
-        flatpak install flathub org.mozilla.Thunderbird -y
+        echo $PASSWORD | sudo -S flatpak install flathub org.mozilla.Thunderbird -y
     fi
 
     echo "Installing Snaps..."
