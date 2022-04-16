@@ -60,13 +60,13 @@ install_apps() {
     flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
 
     #Optional
-    if [["$SPOTIFY" == "true"]]; then
+    if [[ "$SPOTIFY" == "true" ]]; then
         flatpak install flathub com.spotify.Client -y
     fi
-    if [["$POSTMAN" == "true"]]; then
+    if [[ "$POSTMAN" == "true" ]]; then
         sudo -S flatpak install flathub com.getpostman.Postman -y 
     fi
-    if [["$THUNDERBIRD" == "true"]]; then
+    if [[ "$THUNDERBIRD" == "true" ]]; then
         sudo -S flatpak install flathub org.mozilla.Thunderbird -y
     fi
 
@@ -105,14 +105,14 @@ install_apps() {
 
     # Browser
     # Chrome
-    if [["$CHROME" == "true"]]; then 
+    if [[ "$CHROME" == "true" ]]; then 
         echo $PASSWORD | sudo -S dnf install fedora-workstation-repositories
         echo $PASSWORD | sudo -S dnf config-manager --set-enabled google-chrome
         echo $PASSWORD | sudo -S dnf install google-chrome-stable -y
     fi
 
     # Microsoft Edge
-    if [["$EDGE" == "true"]]; then 
+    if [[ "$EDGE" == "true" ]]; then 
         echo $PASSWORD | sudo -S dnf install dnf-plugins-core -y
         echo $PASSWORD | sudo -S dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
         echo $PASSWORD | sudo -S dnf update --refresh -y
@@ -120,12 +120,12 @@ install_apps() {
     fi
 
     # Vim & Nano
-    if [["$VIM_NANO" == "true"]]; then 
+    if [[ "$VIM_NANO" == "true" ]]; then 
         echo $PASSWORD | sudo -S dnf install gvim nano -y
     fi 
 
     # Pop Shell
-    if [["$POP" == "true"]]; then 
+    if [[ "$POP" == "true" ]]; then 
         echo $PASSWORD | sudo -S dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
         git clone https://github.com/pop-os/shell-shortcuts
         cd shell-shortcuts
