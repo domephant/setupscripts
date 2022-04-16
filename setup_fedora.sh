@@ -131,7 +131,8 @@ install_apps() {
         cd shell-shortcuts
         make
         echo $PASSWORD | sudo -S make install
-        cd..
+        cd ..
+        gnome-extensions enable pop-shell@system76.com
     fi
 
     echo "Installing AppImages..."
