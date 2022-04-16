@@ -24,17 +24,17 @@ install_apps() {
     echo "Installing Flatpaks..."
 
     #Mandatory
-    echo $PASSWORD | sudo -S flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
+    flatpak install flathub com.discordapp.Discord flathub org.gimp.GIMP -y flathub org.videolan.VLC flathub io.github.shiftey.Desktop flathub org.onlyoffice.desktopeditors -y
 
     #Optional
     if [[$SPOTIFY == "true"]]; then
-        echo $PASSWORD | sudo -S flatpak install flathub com.spotify.Client -y
+        flatpak install flathub com.spotify.Client -y
     fi
     if [[$POSTMAN == "true"]]; then
-        echo $PASSWORD | sudo -S flatpak install flathub com.getpostman.Postman -y 
+        sudo -S flatpak install flathub com.getpostman.Postman -y 
     fi
     if [[$THUNDERBIRD == "true"]]; then
-        echo $PASSWORD | sudo -S flatpak install flathub org.mozilla.Thunderbird -y
+        sudo -S flatpak install flathub org.mozilla.Thunderbird -y
     fi
 
     echo "Installing Snaps..."
