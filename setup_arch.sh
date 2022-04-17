@@ -86,7 +86,7 @@ install_apps() {
     # Mandatory
 
     # Installation 
-    pikaur -Sa --noconfirm visual-studio-code-bin heroic-games-launcher-bin
+    echo $PASSWORD | pikaur -Sa --noconfirm visual-studio-code-bin heroic-games-launcher-bin
     echo $PASSWORD | sudo -S pacman -S --noconfirm dotnet-sdk github-cli keepassxc appimagelauncher steam 
 
 
