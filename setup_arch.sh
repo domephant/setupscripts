@@ -55,8 +55,8 @@ install_apps() {
     echo $PASSWORD | sudo -S pacman -Syu
 
     # Install yay and pikaur
-    echo $PASSWORD | sudo -S pacman -S yay make --noconfirm
-    echo $PASSWORD | sudo -S pacman -S --needed base-devel git
+    echo $PASSWORD | sudo -S pacman -S --noconfirm yay make 
+    echo $PASSWORD | sudo -S pacman -S --noconfirm --needed base-devel git
     git clone https://aur.archlinux.org/pikaur.git
     cd pikaur
     makepkg --noconfirm -fsri
