@@ -87,7 +87,7 @@ install_apps() {
 
     # Installation 
     pikaur -Sa --noconfirm visual-studio-code-bin heroic-games-launcher-bin
-    echo $PASSWORD | sudo -S pacman -S dotnet-sdk github-cli keepassxc appimagelauncher steam 
+    echo $PASSWORD | sudo -S pacman -S --noconfirm dotnet-sdk github-cli keepassxc appimagelauncher steam 
 
 
     # Optional
@@ -105,14 +105,14 @@ install_apps() {
 
     # Vim & Nano
     if [[ "$VIM_NANO" == "true" ]]; then 
-        echo $PASSWORD | sudo -S pacman -S gvim nano
+        echo $PASSWORD | sudo -S pacman -S --noconfirm gvim nano
     fi 
 
     # Pop Shell
     if [[ "$POP" == "true" ]]; then 
 
         # TODO: Source build or AUR? 
-        echo $PASSWORD | sudo -S dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
+        pikaur -Sa --noconfirm gnome-shell-extension-pop-shell-git pop-shell-shortcuts-git
         git clone https://github.com/pop-os/shell-shortcuts
         cd shell-shortcuts
         make
@@ -183,6 +183,7 @@ while true; do
     case $yn in
         [Yy]* ) 
             install_apps
+            exit 0
         ;;
         [Nn]* ) 
             echo "Cancelled."
