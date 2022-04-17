@@ -52,7 +52,15 @@ install_apps() {
     # TODO: Timeshift, eventually LibreOffice 
 
     # Upgrade system 
-    
+    echo $PASSWORD | sudo -S pacman -Syu
+
+    # Install yay and pikaur
+    echo $PASSWORD | sudo -S pacman -S yay --noconfirm
+    echo $PASSWORD | sudo -S pacman -S --needed base-devel git
+    git clone https://aur.archlinux.org/pikaur.git
+    cd pikaur
+    makepkg -fsri
+
     # Flatpak
     echo "Installing Flatpak and Flathub..."
     echo $PASSWORD | sudo -S flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -66,46 +74,38 @@ install_apps() {
         flatpak install flathub com.spotify.Client -y
     fi
     if [[ "$POSTMAN" == "true" ]]; then
-        sudo -S flatpak install flathub com.getpostman.Postman -y 
+        flatpak install flathub com.getpostman.Postman -y 
     fi
     if [[ "$THUNDERBIRD" == "true" ]]; then
-        sudo -S flatpak install flathub org.mozilla.Thunderbird -y
+        flatpak install flathub org.mozilla.Thunderbird -y
     fi
 
     echo "Installing Snaps..."
     echo "Installing arch packages..."
-    #Mandatory
 
-    # Necessary imports
+    # Mandatory
 
-    # VS Code
+    # Installation 
+    pikaur -Sa --noconfirm visual-studio-code-bin heroic-games-launcher-bin
+    echo $PASSWORD | sudo -S pacman -S dotnet-sdk github-cli keepassxc appimagelauncher steam 
 
-    # Steam
-
-    # AppImageLauncher
-
-    # GitHub CLI
-
-    # Heroic Games Launcher 
-
-    # Installation (.net, KeepassXC, Github CLI, Steam, VS Code, AppImageLauncher, Heroic)
 
     # Optional
 
     # Browser
     # Chrome
     if [[ "$CHROME" == "true" ]]; then 
-        # Chrome Install
+        pikaur -Sa --noconfirm google-chrome 
     fi
 
     # Microsoft Edge
     if [[ "$EDGE" == "true" ]]; then 
-        # Edge Install
+        pikaur -Sa --noconfirm microsoft-edge-stable-bin
     fi
 
     # Vim & Nano
     if [[ "$VIM_NANO" == "true" ]]; then 
-        # GVim & Nano Install
+        echo $PASSWORD | sudo -S pacman -S gvim nano
     fi 
 
     # Pop Shell
