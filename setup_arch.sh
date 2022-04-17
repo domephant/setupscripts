@@ -86,7 +86,7 @@ install_apps() {
     # Mandatory
 
     # Installation 
-    echo $PASSWORD | pikaur -Sa --noconfirm visual-studio-code-bin heroic-games-launcher-bin
+    echo $PASSWORD | pikaur -S --noconfirm visual-studio-code-bin heroic-games-launcher-bin
     echo $PASSWORD | sudo -S pacman -S --noconfirm dotnet-sdk github-cli keepassxc appimagelauncher steam 
 
 
@@ -95,12 +95,12 @@ install_apps() {
     # Browser
     # Chrome
     if [[ "$CHROME" == "true" ]]; then 
-        pikaur -Sa --noconfirm google-chrome 
+        pikaur -S --noconfirm google-chrome 
     fi
 
     # Microsoft Edge
     if [[ "$EDGE" == "true" ]]; then 
-        pikaur -Sa --noconfirm microsoft-edge-stable-bin
+        pikaur -S --noconfirm microsoft-edge-stable-bin
     fi
 
     # Vim & Nano
@@ -113,11 +113,6 @@ install_apps() {
 
         # TODO: Source build or AUR? 
         pikaur -Sa --noconfirm gnome-shell-extension-pop-shell-git pop-shell-shortcuts-git
-        git clone https://github.com/pop-os/shell-shortcuts
-        cd shell-shortcuts
-        make
-        echo $PASSWORD | sudo -S make install
-        cd ..
         gnome-extensions enable pop-shell@system76.com
     fi
 
