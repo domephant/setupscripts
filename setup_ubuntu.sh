@@ -72,7 +72,7 @@ install_apps() {
     fi
 
     echo "Installing Snaps..."
-    echo "Installing rpm packages..."
+    echo "Installing apt packages..."
     #Mandatory
 
     # VS Code
@@ -94,7 +94,7 @@ install_apps() {
 
     # .net
     wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    echo $PASSWORD | sudo -S dpkg -i packages-microsoft-prod.deb -y
+    echo $PASSWORD | sudo -S dpkg -i packages-microsoft-prod.deb 
     rm packages-microsoft-prod.deb
     echo $PASSWORD | sudo -S apt-get update
     echo $PASSWORD | sudo -S apt-get install -y apt-transport-https -y
@@ -105,7 +105,7 @@ install_apps() {
     echo $PASSWORD | sudo -S apt-get install ./heroic.deb -y
     echo $PASSWORD | sudo -S apt-get install ./appimagelauncher.deb -y
 
-
+    # BROKEN: dotnet, AppImageLauncher
 
     # Optional
 
@@ -204,6 +204,7 @@ while true; do
     case $yn in
         [Yy]* ) 
             install_apps
+            exit 0
         ;;
         [Nn]* ) 
             echo "Cancelled."

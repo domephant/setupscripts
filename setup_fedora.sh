@@ -197,6 +197,7 @@ while true; do
     case $yn in
         [Yy]* ) 
             install_apps
+            exit 0
         ;;
         [Nn]* ) 
             echo "Cancelled."
