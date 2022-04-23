@@ -5,6 +5,7 @@
 - Arch-based
 - Fedora
 - Debian-based
+- Ubuntu-derivaritives
 
 ### Prerequisites
 
@@ -13,11 +14,11 @@
 ### Usage
 
 Run this script after installing your Linux distribution.
-The script needs sudo privileges to work properly.  
 
 Note: This script will upgrade your packages.
 
 ### Setup
 
 - Make the desired script executable.
-- Run the script as sudo.
+- Launch the script as user with your desired optional installations
+- Enter your sudo password and Enter y to proceed.
