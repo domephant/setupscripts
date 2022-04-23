@@ -105,7 +105,7 @@ install_apps() {
     echo $PASSWORD | sudo -S apt-get install ./heroic.deb -y
     echo $PASSWORD | sudo -S apt-get install ./appimagelauncher.deb -y
 
-    # BROKEN: dotnet, AppImageLauncher
+    # BROKEN: dotnet, AppImageLauncher, Pop Shell
 
     # Optional
 
@@ -129,7 +129,7 @@ install_apps() {
 
     # Pop Shell
     if [[ "$POP" == "true" ]]; then 
-        echo $PASSWORD | sudo -S apt-get install node-typescript make git cargo rustc libgtk-3-dev
+        echo $PASSWORD | sudo -S apt-get install gnome-extensions-app node-typescript make git cargo rustc libgtk-3-dev
         git clone https://github.com/pop-os/shell
         cd shell
         make local-install

@@ -109,9 +109,8 @@ install_apps() {
     fi 
 
     # Pop Shell
-    if [[ "$POP" == "true" ]]; then 
-
-        # TODO: Source build or AUR? 
+    if [[ "$POP" == "true" ]]; then
+        echo $PASSWORD | sudo -S pacman -S --noconfirm gnome-extensions-app 
         pikaur -Sa --noconfirm gnome-shell-extension-pop-shell-git pop-shell-shortcuts-git
         gnome-extensions enable pop-shell@system76.com
     fi

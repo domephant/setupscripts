@@ -126,7 +126,7 @@ install_apps() {
 
     # Pop Shell
     if [[ "$POP" == "true" ]]; then 
-        echo $PASSWORD | sudo -S dnf install cargo rust gtk3-devel gnome-shell-extension-pop-shell -y 
+        echo $PASSWORD | sudo -S dnf install cargo rust gtk3-devel gnome-extensions-app gnome-shell-extension-pop-shell -y 
         git clone https://github.com/pop-os/shell-shortcuts
         cd shell-shortcuts
         make
