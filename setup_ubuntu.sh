@@ -92,7 +92,7 @@ install_apps() {
     wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.2.6/heroic_2.2.6_amd64.deb -O heroic.deb
 
     # .net
-    wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     echo $PASSWORD | sudo -S dpkg -i packages-microsoft-prod.deb 
     rm packages-microsoft-prod.deb
     echo $PASSWORD | sudo -S apt-get update
@@ -103,8 +103,6 @@ install_apps() {
     echo $PASSWORD | sudo -S apt-get install steam gh keepassxc dotnet-sdk-6.0 -y
     echo $PASSWORD | sudo -S apt-get install ./heroic.deb -y
     echo $PASSWORD | sudo -S apt-get install ./appimagelauncher.deb -y
-
-    # BROKEN: dotnet, AppImageLauncher, Pop Shell
 
     # Optional
 
