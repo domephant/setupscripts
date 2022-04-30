@@ -81,8 +81,7 @@ install_apps() {
 
     # AppImageLauncher
 
-    wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.deb -O appimagelauncher.deb
-
+    wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb -O appimagelauncher.deb
     # GitHub CLI
 
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -129,7 +128,7 @@ install_apps() {
 
     # Pop Shell
     if [[ "$POP" == "true" ]]; then 
-        echo $PASSWORD | sudo -S apt-get install gnome-extensions-app node-typescript make git cargo rustc libgtk-3-dev
+        echo $PASSWORD | sudo -S apt-get install gnome-extensions-app node-typescript make cargo rustc libgtk-3-dev -y
         git clone https://github.com/pop-os/shell
         cd shell
         make local-install
