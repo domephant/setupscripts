@@ -11,6 +11,7 @@ CHROME="false"
 EDGE="false"
 VIM_NANO="false"
 POP="false"
+STEAM="false"
 
 # echo $PASSWORD | sudo -S password input
 
@@ -42,6 +43,10 @@ for var in "$@"; do
         --pop)
             POP="true"
         ;;
+        --steam)
+            STEAM="true"
+        ;;
+
     esac
 done
 
@@ -54,6 +59,7 @@ install_apps() {
     echo $PASSWORD | sudo -S apt-get upgrade -y
     echo "Installing Flatpak and Flathub..."
     echo $PASSWORD | sudo -S apt-get install flatpak git curl -y
+    curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
     echo $PASSWORD | sudo -S flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo "Installing Flatpaks..."
 
@@ -72,23 +78,21 @@ install_apps() {
     fi
 
     echo "Installing Snaps..."
-    echo "Installing apt packages..."
+    echo "Installing apt/deb packages..."
     #Mandatory
 
     # VS Code
-    wget https://go.microsoft.com/fwlink/?LinkID=760868 -O code.deb
-    echo $PASSWORD | sudo -S apt-get install ./code.deb -y
+    echo $PASSWORD | sudo -S deb-get install code
 
     # AppImageLauncher
-
     wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb -O appimagelauncher.deb
+    
     # GitHub CLI
 
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 
     # Heroic Games Launcher
-
     wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.2.6/heroic_2.2.6_amd64.deb -O heroic.deb
 
     # .net
@@ -98,9 +102,10 @@ install_apps() {
     echo $PASSWORD | sudo -S apt-get update
     echo $PASSWORD | sudo -S apt-get install -y apt-transport-https -y
     echo $PASSWORD | sudo -S apt-get update
-    # Installation (AppImageLauncher, Heroic)
 
-    echo $PASSWORD | sudo -S apt-get install steam gh keepassxc dotnet-sdk-6.0 -y
+    # Installation 
+
+    echo $PASSWORD | sudo -S apt-get install gh keepassxc dotnet-sdk-6.0 -y
     echo $PASSWORD | sudo -S apt-get install ./heroic.deb -y
     echo $PASSWORD | sudo -S apt-get install ./appimagelauncher.deb -y
 
@@ -109,19 +114,22 @@ install_apps() {
     # Browser
     # Chrome
     if [[ "$CHROME" == "true" ]]; then 
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
-        echo $PASSWORD | sudo -S apt-get install ./chrome.deb -y
+        echo $PASSWORD | sudo -S deb-get install google-chrome-stable
     fi
 
     # Microsoft Edge
     if [[ "$EDGE" == "true" ]]; then 
-        wget https://go.microsoft.com/fwlink?linkid=2149051 -O edge.deb
-        echo $PASSWORD | sudo -S apt-get install ./edge.deb -y
+        echo $PASSWORD | sudo -S deb-get install microsoft-edge-stable
     fi
 
     # Vim & Nano
     if [[ "$VIM_NANO" == "true" ]]; then 
         echo $PASSWORD | sudo -S apt-get install vim vim-gtk3 nano -y
+    fi 
+
+    # Steam
+    if [[ "$STEAM" == "true" ]]; then 
+        echo $PASSWORD | sudo -S apt-get install steam -y
     fi 
 
     # Pop Shell
@@ -144,10 +152,7 @@ install_apps() {
     tar -xvf jetbrains-toolbox-1.23.11731.tar.gz
     cd jetbrains-toolbox-1.23.11731
     chmod +x jetbrains-toolbox
-    ./jetbrains-toolbox &
-    disown
-
-
+    ./jetbrains-toolbox && disown
 
     echo "Installing GNOME extensions..."
     echo "Done!"
@@ -161,7 +166,6 @@ echo "- GIMP"
 echo "- Discord"
 echo "- VLC"
 echo "- VS Code"
-echo "- Steam"
 echo "- GitHub Desktop"
 echo "- AppImageLauncher"
 echo "- GitHub CLI"
@@ -194,6 +198,10 @@ fi
 
 if [[ "$POP" == "true" ]]; then
     echo "- Pop! Shell"
+fi
+
+if [[ "$STEAM" == "true" ]]; then
+    echo "- Steam"
 fi
 
 while true; do
