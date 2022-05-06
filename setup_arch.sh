@@ -173,7 +173,7 @@ if [[ "$POP" == "true" ]]; then
 fi
 
 while true; do
-    read -p "Proceed?" yn
+    read -p "Proceed? (y/n)" yn
     case $yn in
         [Yy]* ) 
             install_apps

@@ -65,10 +65,10 @@ install_apps() {
         flatpak install flathub com.spotify.Client -y
     fi
     if [[ "$POSTMAN" == "true" ]]; then
-        sudo -S flatpak install flathub com.getpostman.Postman -y 
+        flatpak install flathub com.getpostman.Postman -y 
     fi
     if [[ "$THUNDERBIRD" == "true" ]]; then
-        sudo -S flatpak install flathub org.mozilla.Thunderbird -y
+        flatpak install flathub org.mozilla.Thunderbird -y
     fi
 
     echo "Installing Snaps..."
@@ -197,7 +197,7 @@ if [[ "$POP" == "true" ]]; then
 fi
 
 while true; do
-    read -p "Proceed?" yn
+    read -p "Proceed? (y/n)" yn
     case $yn in
         [Yy]* ) 
             install_apps
