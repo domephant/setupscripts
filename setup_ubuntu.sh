@@ -152,7 +152,7 @@ install_apps() {
     tar -xvf jetbrains-toolbox-1.23.11731.tar.gz
     cd jetbrains-toolbox-1.23.11731
     chmod +x jetbrains-toolbox
-    ./jetbrains-toolbox && disown
+    ./jetbrains-toolbox 
 
     echo "Installing GNOME extensions..."
     echo "Done!"
