@@ -12,6 +12,7 @@ EDGE="false"
 VIM_NANO="false"
 POP="false"
 STEAM="false"
+ONENOTE="false"
 
 # echo $PASSWORD | sudo -S password input
 
@@ -45,6 +46,9 @@ for var in "$@"; do
         ;;
         --steam|-s)
             STEAM="true"
+        ;;
+        --onenote|-on)
+            ONENOTE="true"
         ;;
     esac
 done
@@ -85,6 +89,10 @@ install_apps() {
     fi
 
     echo "Installing Snaps..."
+    if [[ "$ONENOTE" == "true" ]]; then
+        echo $PASSWORD | sudo snap install p3x-onenote 
+    fi
+
     echo "Installing arch packages..."
 
     # Mandatory
@@ -182,6 +190,10 @@ fi
 
 if [[ "$STEAM" == "true" ]]; then
     echo "- Steam"
+fi
+
+if [[ "$ONENOTE" == "true" ]]; then
+    echo "- P3X Onenote"
 fi
 
 while true; do
