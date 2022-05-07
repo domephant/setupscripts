@@ -22,28 +22,28 @@ read -s PASSWORD
 
 for var in "$@"; do
     case "$var" in 
-        --spotify) 
+        --spotify|-sp) 
             SPOTIFY="true"
         ;;
-        --postman) 
+        --postman|-pm) 
             POSTMAN="true"
         ;;
-        --thunderbird) 
+        --thunderbird|-tb) 
             THUNDERBIRD="true"
         ;;
-        --chrome)
+        --chrome|-c)
             CHROME="true"
         ;;
-        --edge)
+        --edge|-e)
             EDGE="true"
         ;;
-        --vimnano) 
+        --vimnano|-vn) 
             VIM_NANO="true"
         ;;
-        --pop)
+        --pop|-p)
             POP="true"
         ;;
-        --steam)
+        --steam|-s)
             STEAM="true"
         ;;
 
@@ -54,7 +54,7 @@ done
 install_apps() {
 
     # Installation
-    # TODO: Timeshift, eventually LibreOffice 
+    # TODO: Timeshift
     echo $PASSWORD | sudo -S apt-get update
     echo $PASSWORD | sudo -S apt-get upgrade -y
     echo "Installing Flatpak and Flathub..."

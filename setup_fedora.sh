@@ -11,6 +11,7 @@ CHROME="false"
 EDGE="false"
 VIM_NANO="false"
 POP="false"
+STEAM="false"
 
 # echo $PASSWORD | sudo -S password input
 
@@ -21,28 +22,30 @@ read -s PASSWORD
 
 for var in "$@"; do
     case "$var" in 
-        --spotify) 
+        --spotify|-sp) 
             SPOTIFY="true"
         ;;
-        --postman) 
+        --postman|-pm) 
             POSTMAN="true"
         ;;
-        --thunderbird) 
+        --thunderbird|-tb) 
             THUNDERBIRD="true"
         ;;
-        --chrome)
+        --chrome|-c)
             CHROME="true"
         ;;
-        --edge)
+        --edge|-e)
             EDGE="true"
         ;;
-        --vimnano) 
+        --vimnano|-vn) 
             VIM_NANO="true"
         ;;
-        --pop)
+        --pop|-p)
             POP="true"
         ;;
-        
+        --steam|-s)
+            STEAM="true"
+        ;;
     esac
 done
 
@@ -97,7 +100,7 @@ install_apps() {
 
     # Installation
 
-    echo $PASSWORD | sudo -S dnf install dotnet-sdk-6.0 keepassxc gh steam code -y
+    echo $PASSWORD | sudo -S dnf install dotnet-sdk-6.0 keepassxc gh code -y
     echo $PASSWORD | sudo -S dnf localinstall -y appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm 
     echo $PASSWORD | sudo -S dnf localinstall -y heroic-2.2.6.x86_64.rpm
 
@@ -123,6 +126,11 @@ install_apps() {
     # Vim & Nano
     if [[ "$VIM_NANO" == "true" ]]; then 
         echo $PASSWORD | sudo -S dnf install gvim nano -y
+    fi 
+
+    # Vim & Nano
+    if [[ "$STEAM" == "true" ]]; then 
+        echo $PASSWORD | sudo -S dnf install steam -y
     fi 
 
     # Pop Shell
@@ -158,7 +166,6 @@ echo "- GIMP"
 echo "- Discord"
 echo "- VLC"
 echo "- VS Code"
-echo "- Steam"
 echo "- GitHub Desktop"
 echo "- AppImageLauncher"
 echo "- GitHub CLI"
@@ -191,6 +198,10 @@ fi
 
 if [[ "$POP" == "true" ]]; then
     echo "- Pop! Shell"
+fi
+
+if [[ "$STEAM" == "true" ]]; then
+    echo "- Steam"
 fi
 
 while true; do
