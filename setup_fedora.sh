@@ -60,6 +60,8 @@ install_apps() {
     # TODO: Timeshift, eventually LibreOffice 
     echo $PASSWORD | sudo -S dnf update --refresh --assumeno
     echo $PASSWORD | sudo -S dnf upgrade --refresh -y
+    echo $PASSWORD | sudo -S dnf install snapd -y
+    echo $PASSWORD | sudo ln -s /var/lib/snapd/snap /snap
     echo "Installing Flatpak and Flathub..."
     echo $PASSWORD | sudo -S flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo "Installing Flatpaks..."
