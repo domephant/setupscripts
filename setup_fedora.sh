@@ -97,19 +97,19 @@ install_apps() {
     echo $PASSWORD | sudo -S dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
     # AppImageLauncher
-    wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
+    # wget https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
     # GitHub CLI
     echo $PASSWORD | sudo -S dnf install 'dnf-command(config-manager)'
     echo $PASSWORD | sudo -S dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
 
     # Heroic Games Launcher 
-    wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.2.6/heroic-2.2.6.x86_64.rpm
+    echo $PASSWORD | sudo -S dnf copr enable atim/heroic-games-launcher -y
 
     # Installation
 
     echo $PASSWORD | sudo -S dnf install dotnet-sdk-6.0 keepassxc gh code -y
-    echo $PASSWORD | sudo -S dnf localinstall -y appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm 
-    echo $PASSWORD | sudo -S dnf localinstall -y heroic-2.2.6.x86_64.rpm
+    # echo $PASSWORD | sudo -S dnf localinstall -y appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm 
+    echo $PASSWORD | sudo -S dnf install heroic-games-launcher-bin -y
 
 
     # Optional
